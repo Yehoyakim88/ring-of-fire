@@ -9,12 +9,14 @@ import { Game } from 'src/models/game';
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
   game : Game;
+  currentCard : string = '';
 
   constructor() {
 
   }
 
 
+  // ngOnit wird einmalig aufgerufen, sobald die Angular-App geladen wurde
   ngOnInit(): void {
     this.newGame();
   }
@@ -27,6 +29,19 @@ export class GameComponent implements OnInit {
 
 
   takeCard() {
-    this.pickCardAnimation = true;
+    if(!this.pickCardAnimation) {
+      this.currentCard = this.game.stack.pop();
+      
+      this.pickCardAnimation = true;
+      // this.game.playedCards.push(this.currentCard);
+      console.log('New drawn card is ', this.currentCard);
+      console.log(this.game);
+
+
+      setTimeout(() => {
+        this.game.playedCards.push(this.currentCard);
+        this.pickCardAnimation = false;
+      }, 1000);
+    }
   }
 }
