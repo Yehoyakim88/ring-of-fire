@@ -5,9 +5,12 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 
 const routes: Routes = [
   { path: '', component: StartScreenComponent },
-  { path: 'game', component: GameComponent}
+  { path: 'game', component: GameComponent}   // path must not start with a / !!!
 ];
 
+
+// The forRoot() method creates an NgModule that contains all the directives, 
+// the given routes, and the Router service itself. [https://angular.io/api/router/RouterModule]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

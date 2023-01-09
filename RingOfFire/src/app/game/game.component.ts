@@ -19,7 +19,7 @@ export class GameComponent implements OnInit {
   }
 
 
-  // ngOnit wird einmalig aufgerufen, sobald die Angular-App geladen wurde
+  // ngOnit will be called once the Angular-App has finished loading
   ngOnInit(): void {
     this.newGame();
   }
