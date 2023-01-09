@@ -1,8 +1,9 @@
 export class Game {
-    public players : string[] = ['Hans', 'Peter', 'Freddy'];     // oeffentliche Variable, in das nur Array von strings rein duerfen
+    // public players : string[] = ['Hans', 'Peter', 'Freddy'];     // oeffentliche Variable, in das nur Array von strings rein duerfen
+    public players : string[] = [];
     public stack : string[] = [];
     public playedCards : string[] = [];
-    public CurrentPlayer : number = 0;
+    public currentPlayer : number = 0;
 
 
     constructor() {
