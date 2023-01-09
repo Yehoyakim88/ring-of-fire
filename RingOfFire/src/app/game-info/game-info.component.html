@@ -1,9 +1,9 @@
 <mat-card>
-    <mat-card-title>Title</mat-card-title>
+    <mat-card-title style="padding-left: 16px"> 
+        <!-- Wenn card true, dann title. Ansonsten den Satz 'Please pick a card' -->
+        {{ card ? title : 'Please pick a card.' }}
+    </mat-card-title>
     <mat-card-content>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Magni deserunt recusandae quod inventore doloribus! 
-        Dolore libero, blanditiis dolorem odio et iusto ullam, non temporibus totam, facere aliquid adipisci. 
-        Tempore, molestiae!
+        {{ card ? description : 'Please click on the card stack to pick the next card.' }}
     </mat-card-content>
 </mat-card>

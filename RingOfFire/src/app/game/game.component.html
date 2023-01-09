@@ -44,4 +44,6 @@ player is the variable used in line 16 inside the *ngFor-Statement
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-game-info class="pinBottom"></app-game-info>
+  <!--  Die variable card innerhalb der Klasse in game-info.component.ts erhält den Wert der Variablen currentCard der 
+        Klasse  GameComponent in game.component.ts -->
+  <app-game-info [card]="currentCard" class="pinBottom"></app-game-info>

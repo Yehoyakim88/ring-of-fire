@@ -36,9 +36,12 @@ export class GameComponent implements OnInit {
       this.currentCard = this.game.stack.pop();
       
       this.pickCardAnimation = true;
-      // this.game.playedCards.push(this.currentCard);
       console.log('New drawn card is ', this.currentCard);
-      console.log(this.game);
+      console.log('Game is ', this.game);
+
+      this.game.currentPlayer++;
+      // Zeile 44 verhindert, dass this.game.currentPlayer größer als this.game.players.length wird
+      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
 
 
       setTimeout(() => {
@@ -54,7 +57,9 @@ export class GameComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((name : string) => {
       console.log('The dialog was closed', name);
-      this.game.players.push(name);
+      if( name && name.length > 0) {
+        this.game.players.push(name);
+      }
     });
   }
 }
