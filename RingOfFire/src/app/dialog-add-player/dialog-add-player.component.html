@@ -3,13 +3,13 @@
   <p>Please enter the player's name</p>
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <!-- Das matInput Feld wird verknüpft mit der Variablen "name" -->
+    <!-- matInput field linked to the variable name -->
     <input matInput [(ngModel)]="name">  
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <!-- Button ist deaktiviert, wenn die Länge von name gleich 0 ist -->
+  <!-- button deactivated if length of name is 0 -->
   <button mat-button [disabled]="name.length <= 1" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
 </div>
 

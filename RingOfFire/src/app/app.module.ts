@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { GameInfoComponent } from './game-info/game-info.component';
 import {MatCardModule} from '@angular/material/card';
 
-
+// inside declarations are all components generated manually by the dveloper
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,8 @@ import {MatCardModule} from '@angular/material/card';
     DialogAddPlayerComponent,
     GameInfoComponent
   ],
+  // imports are the external components provided by Angular library and used inside
+  // the developer's own components
   imports: [
     BrowserModule,
     AppRoutingModule,

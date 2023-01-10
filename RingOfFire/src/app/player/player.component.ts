@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class PlayerComponent {
 
   // input variables 'name' and 'playerActive' 
-  // that can be usied in player.component.html
+  // that can be used in player.component.html
   @Input() name;
   @Input() playerActive : boolean = false;
 }

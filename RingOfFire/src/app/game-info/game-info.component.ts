@@ -33,15 +33,15 @@ export class GameInfoComponent implements OnInit, OnChanges {
     
   }
 
-  // Die Funktion ngOnChanges() wird immer aufgerufen, 
-  // wenn sich Wert der Input-Variablen [@Input() var] ändert
+  // Function ngOnChanges() is called every time 
+  // the value of input variable [@Input() var] changes
   ngOnChanges(): void {
-    // if-Abfrage, da ngOnChange am Anfang auch schon aufgerufen wird, 
-    // allerdings title und description beide zu Beginn '' sind.
+    // if statement as ngOnChange is called in the beginning, 
+    // whereas title and description are of value '' at start.
     if(this.card) {
       console.log('Current card is: ', this.card);
     
-    // Das vorangestellte + macht aus dem String eine Number
+    // the prefix + converts string to a number
     let cardNumber = +this.card.split('_')[1];
     this.title = this.cardAction[cardNumber - 1].title;
     this.description = this.cardAction[cardNumber - 1].description;
