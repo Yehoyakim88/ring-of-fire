@@ -11,7 +11,7 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
-  game : Game;
+  game : Game;                                // Variable game of type Game from game.ts
   currentCard : string = '';
 
   constructor(public dialog: MatDialog) {
@@ -46,6 +46,7 @@ export class GameComponent implements OnInit {
 
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
+        console.log('this.game.playedCards: ', this.game.playedCards);
         this.pickCardAnimation = false;
       }, 1000);
     }

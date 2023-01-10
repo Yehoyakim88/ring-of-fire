@@ -21,7 +21,7 @@ player is the variable used in line 16 inside the *ngFor-Statement
             src="./../../assets/img/cards/{{ card }}.png">
 
         <!-- Current card (Animation) -->
-        <!-- Reihenfolge so angepasst, dass aktuell gezogene Karte ganz oben in z gezeichnet wird! -->
+        <!-- order adapted, so that current drawn card on top of z axis! -->
         <img  (click)="takeCard()" *ngIf = "pickCardAnimation" class="pickCard" style="right: 25px" 
             src="./../../assets/img/cards/{{ currentCard }}.png">
     </div>
@@ -31,6 +31,6 @@ player is the variable used in line 16 inside the *ngFor-Statement
     <mat-icon>add</mat-icon>
   </button>
 
-  <!--  Die variable card innerhalb der Klasse in game-info.component.ts erhält den Wert der Variablen currentCard der 
-        Klasse  GameComponent in game.component.ts -->
+  <!--  Variable card of der class in game-info.component.ts has the value of the variable currentCard of 
+        class GameComponent in game.component.ts -->
   <app-game-info [card]="currentCard" class="pinBottom"></app-game-info>

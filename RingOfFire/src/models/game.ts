@@ -1,6 +1,6 @@
 export class Game {
-    // public players : string[] = ['Hans', 'Peter', 'Freddy'];     // oeffentliche Variable, in das nur Array von strings rein duerfen
-    public players : string[] = [];
+    // public players : string[] = ['Hans', 'Peter', 'Freddy'];     
+    public players : string[] = [];     // public variable only for Array of type string
     public stack : string[] = [];
     public playedCards : string[] = [];
     public currentPlayer : number = 0;
@@ -10,7 +10,7 @@ export class Game {
         for (let i = 1; i < 14; i++) {
             this.stack.push('spade_' + i);
             this.stack.push('hearts_' + i);
-            this.stack.push('clubs_' + i);      // RingOfFire/src/assets/img/cards/clubs_1.png
+            this.stack.push('clubs_' + i);      // RingOfFire/src/assets/img/cards/clubs_i.png
             this.stack.push('diamonds_' + i);    
         }
 
