@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -12,9 +14,11 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
   game : Game;                                // Variable game of type Game from game.ts
+  gameId: string;
   currentCard : string = '';
 
-  constructor(public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, 
+    public dialog: MatDialog) {
 
   }
 
@@ -22,6 +26,24 @@ export class GameComponent implements OnInit {
   // ngOnit will be called once the Angular-App has finished loading
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((parameters) => {
+      console.log('this.route.params: ', parameters['id']);
+      this.gameId = parameters['id'];
+      
+      this
+      .firestore
+      .collection('games')
+      .doc(this.gameId)                     // from collection get specific document with given id
+      .valueChanges()
+      .subscribe((game:any) => {            // 'any' so that no error is thrown
+        console.log('Game update ', game);
+        // update from database
+        this.game.currentPlayer = game.currentPlayer;
+        this.game.playedCards = game.playedCards;
+        this.game.players = game.players;
+        this.game.stack = game.stack;
+      });
+    });
   }
 
 
@@ -38,6 +60,7 @@ export class GameComponent implements OnInit {
       this.pickCardAnimation = true;
       console.log('New drawn card is ', this.currentCard);
       console.log('Game is ', this.game);
+      this.saveGame();
 
       this.game.currentPlayer++;
       // Zeile 44 verhindert, dass this.game.currentPlayer größer als this.game.players.length wird
@@ -48,6 +71,7 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.currentCard);
         console.log('this.game.playedCards: ', this.game.playedCards);
         this.pickCardAnimation = false;
+        this.saveGame();
       }, 1000);
     }
   }
@@ -60,7 +84,17 @@ export class GameComponent implements OnInit {
       console.log('The dialog was closed', name);
       if( name && name.length > 0) {
         this.game.players.push(name);
+        this.saveGame();
       }
     });
+  }
+
+
+  saveGame(){
+    this
+      .firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.toJSON());   
   }
 }

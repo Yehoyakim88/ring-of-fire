@@ -5,7 +5,8 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 
 const routes: Routes = [
   { path: '', component: StartScreenComponent },
-  { path: 'game', component: GameComponent}   // path must not start with a / !!!
+  //            : tells the router that a variable follows, in this case 'id'
+  { path: 'game/:id', component: GameComponent}   // path must not start with a / !!!
 ];
 
 
