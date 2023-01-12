@@ -11,4 +11,5 @@ export class PlayerComponent {
   // that can be used in player.component.html
   @Input() name;
   @Input() playerActive : boolean = false;
+  @Input() image = '1.webp';
 }

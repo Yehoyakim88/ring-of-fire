@@ -10,6 +10,7 @@ export class PlayerMobileComponent {
   // input variables 'name' and 'playerActive' 
   // that can be used in player-mobile.component.html
   @Input() name;
+  @Input() image = '1.webp';
   @Input() playerActive : boolean = false;
 
 }

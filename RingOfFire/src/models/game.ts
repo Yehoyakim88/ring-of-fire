@@ -1,6 +1,7 @@
 export class Game {
     // public players : string[] = ['Hans', 'Peter', 'Freddy'];     
     public players : string[] = [];     // public variable only for Array of type string
+    public player_images : string[] = [];
     public stack : string[] = [];
     public playedCards : string[] = [];
     public currentPlayer : number = 0;
@@ -24,6 +25,7 @@ export class Game {
     public toJSON() {
         return {
             players: this.players,
+            player_images: this.player_images,
             stack: this.stack,
             playedCards: this.playedCards,
             currentPlayer: this.currentPlayer,
