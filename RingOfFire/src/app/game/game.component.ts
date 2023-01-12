@@ -12,10 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
+  // pickCardAnimation = false; // cut out and moved to
+  // currentCard : string = ''; // cut out and moved to
   game : Game;                                // Variable game of type Game from game.ts
   gameId: string;
-  currentCard : string = '';
+  
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, 
     public dialog: MatDialog) {
@@ -42,6 +43,8 @@ export class GameComponent implements OnInit {
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
         this.game.stack = game.stack;
+        this.game.pickCardAnimation = game.pickCardAnimation;
+        this.game.currentCard = game.currentCard;
       });
     });
   }
@@ -54,11 +57,11 @@ export class GameComponent implements OnInit {
 
 
   takeCard() {
-    if(!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop();
+    if(!this.game.pickCardAnimation) {
+      this.game.currentCard = this.game.stack.pop();
       
-      this.pickCardAnimation = true;
-      console.log('New drawn card is ', this.currentCard);
+      this.game.pickCardAnimation = true;
+      console.log('New drawn card is ', this.game.currentCard);
       console.log('Game is ', this.game);
       this.saveGame();
 
@@ -68,9 +71,9 @@ export class GameComponent implements OnInit {
 
 
       setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
+        this.game.playedCards.push(this.game.currentCard);
         console.log('this.game.playedCards: ', this.game.playedCards);
-        this.pickCardAnimation = false;
+        this.game.pickCardAnimation = false;
         this.saveGame();
       }, 1000);
     }
